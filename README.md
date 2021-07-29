@@ -10,10 +10,10 @@ This script has been used in NeoOncoHLA publication for the discovery of novel H
 
 ## Table of Contents
 0. [Installation](#Installation)
-1. [External prerequisites](#External prerequisites)
+1. [External-prerequisites](#External-prerequisites)
 2. [Testing](#Testing)
 3. [Usage](#Usage)
-4. [Input-output example](#Input-output example)
+4. [Input-output](#Input-output)
 
 
 ## Installation:
@@ -24,7 +24,7 @@ git clone git@github.com:OncoImmunity/hla_simulator.git
 ```
 Edit hla_simulator.sh script and modify BAMSURGEON_VENV and PICARDJAR variables with your tool paths.
 
-## External prerequisites:
+## External-prerequisites:
 - [BamSurgeon](https://www.nature.com/articles/nmeth.3407):
 ```
 git clone git@github.com:adamewing/bamsurgeon.git
@@ -89,12 +89,12 @@ o   Output folder [Default: hla_simulation_experiment_output]
 h   Print this help
 ```
 
-## Input-output example
+## Input-output
 
 **Input**
-Required arguments include -r with a fasta file containing the allele to spike variants in, -g with the gene annotations of the given allele (exon coordinates), -a with the name of the allele to be mutated and -b with the bam file containing the reads mapped to the allele that has to be spiked with germline variant(s).
+Required arguments include `-r` with a fasta file containing the allele to spike variants in, `-g` with the gene annotations of the given allele (exon coordinates), `-a` with the name of the allele to be mutated and `-b` with the bam file containing the reads mapped to the allele that has to be spiked with germline variant(s).
 
 **Output**
  
-- spiked_R1.fq.gz and spiked_R2.fq.gz: FASTQ files containing the spiked reads.
-- spiked.ground_truth.vcf: VCF containing the spiked variant(s).
+- `spiked_R1.fq.gz` and `spiked_R2.fq.gz: FASTQ files containing the spiked reads.
+- `spiked.ground_truth.vcf`: VCF containing the spiked variant(s).
