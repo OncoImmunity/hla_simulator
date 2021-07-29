@@ -9,11 +9,11 @@ This script can help to benchmark the accuracy of tools to detect germline varia
 This script has been used in NeoOncoHLA publication for the discovery of novel HLA alleles through the detection unknown HLA polymorphisms (by germline variant calling)
 
 ## Table of Contents
-0. [Installation](#Installation)
-1. [External-prerequisites](#External-prerequisites)
-2. [Testing](#Testing)
-3. [Usage](#Usage)
-4. [Input-output](#Input-output)
+1. [Installation](#Installation)
+2. [External-prerequisites](#External-prerequisites)
+3. [Testing](#Testing)
+4. [Usage](#Usage)
+5. [Input-output](#Input-output)
 
 
 ## Installation:
@@ -96,5 +96,5 @@ Required arguments include `-r` with a fasta file containing the allele to spike
 
 **Output**
  
-- `spiked_R1.fq.gz` and `spiked_R2.fq.gz: FASTQ files containing the spiked reads.
+- `spiked_R1.fq.gz` and `spiked_R2.fq.gz`: FASTQ files containing the spiked reads.
 - `spiked.ground_truth.vcf`: VCF containing the spiked variant(s).
