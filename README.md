@@ -22,7 +22,7 @@ Download and install
 ```
 git clone git@github.com:OncoImmunity/hla_simulator.git
 ```
-Edit hla_simulator.sh script and modify BAMSURGEON_VENV and PICARDJAR variables with your tool paths.
+Edit `hla_simulator.sh` script and modify `BAMSURGEON_VENV` and `PICARDJAR variables with your tool paths.
 
 ## External-prerequisites:
 - [BamSurgeon](https://www.nature.com/articles/nmeth.3407):
