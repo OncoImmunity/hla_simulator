@@ -11,7 +11,7 @@ This script has been used in NeoOncoHLA publication for the discovery of novel H
 ## Table of Contents
 0. [Installation](#Installation)
 1. [External prerequisites](#External prerequisites)
-2. [Run tests](#Run tests)
+2. [Testing](#Testing)
 3. [Usage](#Usage)
 4. [Input-output example](#Input-output example)
 
@@ -24,7 +24,7 @@ git clone git@github.com:OncoImmunity/hla_simulator.git
 ```
 Edit hla_simulator.sh script and modify BAMSURGEON_VENV and PICARDJAR variables with your tool paths.
 
-## External Prerequisites:
+## External prerequisites:
 - [BamSurgeon](https://www.nature.com/articles/nmeth.3407):
 ```
 git clone git@github.com:adamewing/bamsurgeon.git
@@ -55,8 +55,8 @@ cd bedtools2
 make
 ```
 
-## Tests:
-Run tests:
+## Testing:
+Run tests using:
 ```
 cd test
 bash run_tests.sh
