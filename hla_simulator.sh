@@ -387,9 +387,10 @@ variant_spiking_loop ${VAR_NUM} ${variant_type_for_bs} ${VARTYPE}
 if ${ADD_SNV}; then
 	cp spiked_germline.addsnv.spiked_variant.vcf ${OUTDIR}/spiked.ground_truth.vcf
 	grep -v '#' ${simulated_vcf} >> ${OUTDIR}/spiked.ground_truth.vcf
+	rm spiked_germline.add*.spiked_variant.vcf
 else
 
-	mv spiked_germline*.spiked_variant.vcf ${OUTDIR}/spiked.ground_truth.vcf
+	mv spiked_germline.add${variant_type_for_bs}.spiked_variant.vcf ${OUTDIR}/spiked.ground_truth.vcf
 fi
 
 # -------------------------- Spiked bam to fastq ---------------------- #
