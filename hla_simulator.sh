@@ -183,7 +183,7 @@ source ${BAMSURGEON_VENV}
 
 function Sort_bam ()
 {
-	samtools sort ${1} -o ${OUTDIR}/spiked_germline_snv_sorted.bam
+	samtools sort ${1} -o ${OUTDIR}/spiked_snv_sorted.bam
 }
 
 
@@ -266,7 +266,7 @@ function Spike_snv ()
         -v ${OUTDIR}/spiked_variant.tsv \
         -f ${INPUT_BAM} \
         -r ${REF_FA} \
-        -o ${OUTDIR}/spiked_germline.bam \
+        -o ${OUTDIR}/spiked.bam \
         -p 10 \
         -m 1 \
         --picardjar ${PICARDJAR} \
@@ -284,7 +284,7 @@ function Spike_indel ()
         -v ${OUTDIR}/spiked_variant.tsv \
         -f ${INPUT_BAM} \
         -r ${REF_FA} \
-        -o ${OUTDIR}/spiked_germline.bam \
+        -o ${OUTDIR}/spiked.bam \
         -p 10 \
         -m 1 \
         --picardjar ${PICARDJAR} \
@@ -321,7 +321,7 @@ function variant_spiking_loop ()
 			exit 1
 		fi
 
-		simulated_vcf="spiked_germline.add"${2}".spiked_variant.vcf"
+		simulated_vcf="spiked.add"${2}".spiked_variant.vcf"
 		if [ -f "${simulated_vcf}" ]; then
 			# File exists
 			successfully_spiked_variant_num=$(grep -vc '^#' ${simulated_vcf})
@@ -337,7 +337,7 @@ function Bam2fastq ()
 {
 	java -jar ${PICARDJAR} \
         SamToFastq \
-        I=${OUTDIR}/spiked_germline.bam \
+        I=${OUTDIR}/spiked.bam \
         F=${OUTDIR}/spiked_R1.fq \
         F2=${OUTDIR}/spiked_R2.fq \
         &> /dev/null
@@ -364,11 +364,11 @@ if ${ADD_SNV}; then
 	Run_randomsites "snv"
 	Filter_by_length "snv"
 	variant_spiking_loop "1" "snv" "snv"
-	mv ${OUTDIR}/spiked_germline.bam ${OUTDIR}/spiked_germline_snv.bam
-	Sort_bam ${OUTDIR}/spiked_germline_snv.bam
-	Index_bam ${OUTDIR}/spiked_germline_snv_sorted.bam
-	rm ${OUTDIR}/spiked_germline_snv.bam
-	INPUT_BAM=${OUTDIR}/spiked_germline_snv_sorted.bam
+	mv ${OUTDIR}/spiked.bam ${OUTDIR}/spiked_snv.bam
+	Sort_bam ${OUTDIR}/spiked_snv.bam
+	Index_bam ${OUTDIR}/spiked_snv_sorted.bam
+	rm ${OUTDIR}/spiked_snv.bam
+	INPUT_BAM=${OUTDIR}/spiked_snv_sorted.bam
 fi
 
 # ---------- Generate potential mutations at random positions ---------- #
@@ -385,12 +385,12 @@ variant_spiking_loop ${VAR_NUM} ${variant_type_for_bs} ${VARTYPE}
 
 # ----------------------- Create ground truth VCF ---------------------- #
 if ${ADD_SNV}; then
-	cp spiked_germline.addsnv.spiked_variant.vcf ${OUTDIR}/spiked.ground_truth.vcf
+	cp spiked.addsnv.spiked_variant.vcf ${OUTDIR}/spiked.ground_truth.vcf
 	grep -v '#' ${simulated_vcf} >> ${OUTDIR}/spiked.ground_truth.vcf
-	rm spiked_germline.add*.spiked_variant.vcf
+	rm spiked.add*.spiked_variant.vcf
 else
 
-	mv spiked_germline.add${variant_type_for_bs}.spiked_variant.vcf ${OUTDIR}/spiked.ground_truth.vcf
+	mv spiked.add${variant_type_for_bs}.spiked_variant.vcf ${OUTDIR}/spiked.ground_truth.vcf
 fi
 
 # -------------------------- Spiked bam to fastq ---------------------- #
