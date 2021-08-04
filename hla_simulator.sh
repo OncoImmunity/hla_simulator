@@ -15,11 +15,9 @@ MAXVAF="1.0"
 OUTDIR="hla_simulation_experiment_output"
 
 # Path to BAMSURGEON ENV
-BAMSURGEON_VENV="/data/backup/tesla/p1_hla/experiment_ngs_395/mutate_hla/simulation/simulation_22042020/hlasimulator/somatic_simulations/bamsurgeon/venv/bin/activate"
-#BAMSURGEON_VENV="./bamsurgeon/venv/bin/activate"
+BAMSURGEON_VENV="./bamsurgeon/venv/bin/activate"
 # Path to PIJARD jar file
-#PICARDJAR="./picard-tools-1.131/picard.jar"
-PICARDJAR="/data/backup/tesla/p1_hla/experiment_ngs_395/mutate_hla/bamsurgeon/picard-tools-1.131/picard.jar"
+PICARDJAR="./picard-tools-1.131/picard.jar"
 
 function Usage ()
 {
